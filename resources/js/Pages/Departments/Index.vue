@@ -48,7 +48,9 @@ const props = defineProps({
                                     <BreezeTc>{{ d.name }}</BreezeTc>
                                     <BreezeTc>{{ d.email }}</BreezeTc>
                                     <BreezeTc>{{ d.phone }}</BreezeTc>
-                                    <BreezeTc></BreezeTc>
+                                    <BreezeTc>
+                                    <BreezeLink :href="route('departments.edit',d.id)">Edit</BreezeLink>
+                                    </BreezeTc>
                                 </tr>
                             </tbody>
                         </BreezeTable>
