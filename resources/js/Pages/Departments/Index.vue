@@ -7,11 +7,20 @@ import BreezeLink from "@/Components/AnchorLink.vue";
 import { Head } from "@inertiajs/inertia-vue3";
 import { ref, defineProps } from "vue";
 import { Link } from "@inertiajs/inertia-vue3";
-import BreezeHeading from "@/Components/Heading.vue"
+import BreezeHeading from "@/Components/Heading.vue";
+import { useForm } from "@inertiajs/inertia-vue3";
 
 const props = defineProps({
     departments: Object,
 });
+const form = useForm({
+});
+
+function destroy(id){
+    form.delete(route('departments.destroy', id));
+    //   this.$inertia.delete(route("departments.destroy", id));
+    //   this.delete(route("departments.destroy", id));
+}
 </script>
 
 <template>
@@ -19,9 +28,7 @@ const props = defineProps({
 
     <BreezeAuthenticatedLayout>
         <template #header>
-           <BreezeHeading>
-              Departments
-            </BreezeHeading>
+            <BreezeHeading> Departments </BreezeHeading>
         </template>
 
         <div class="py-12">
@@ -29,7 +36,9 @@ const props = defineProps({
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-6 bg-white border-b border-gray-200">
                         <div class="flex items-center justify-end mb-6">
-                        <BreezeLink :href="route('departments.create')" >Create Departments</BreezeLink>
+                            <BreezeLink :href="route('departments.create')"
+                                >Create Departments</BreezeLink
+                            >
                         </div>
                         <BreezeTable>
                             <template #header>
@@ -50,7 +59,20 @@ const props = defineProps({
                                     <BreezeTc>{{ d.email }}</BreezeTc>
                                     <BreezeTc>{{ d.phone }}</BreezeTc>
                                     <BreezeTc>
-                                    <BreezeLink :href="route('departments.edit',d.id)">Edit</BreezeLink>
+                                        <form >
+                                        <BreezeLink
+                                            mode="edit"
+                                            :href="
+                                                route('departments.edit', d.id)
+                                            "
+                                            >Edit</BreezeLink
+                                        >
+                                        <BreezeLink
+                                            mode="delete"
+                                            @click.prevent="destroy(d.id)"
+                                            >Delete</BreezeLink
+                                        >
+                                        </form>
                                     </BreezeTc>
                                 </tr>
                             </tbody>
