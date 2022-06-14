@@ -6,6 +6,7 @@ import BreezeLabel from "@/Components/Label";
 import BreezeInput from "@/Components/Input";
 import BreezeInputError from "@/Components/InputError";
 import BreezeButton from "@/Components/Button";
+import BreezeResetButton from "@/Components/ResetButton";
 import { Inertia } from "@inertiajs/inertia";
 
 const form = useForm({
@@ -15,6 +16,10 @@ const form = useForm({
 });
 function addDepartment() {
     form.post(route("departments.store"));
+}
+function resetForm() {
+    form.clearErrors();
+    form.reset();
 }
 </script>
 
@@ -80,7 +85,12 @@ function addDepartment() {
                             ></BreezeInputError>
                             <!-- submit -->
                             <div class="flex items-center justify-end mt-4">
-                                <BreezeButton :loading="form.processing">Create</BreezeButton>
+                                <BreezeResetButton @click="resetForm"
+                                    >Reset Form</BreezeResetButton
+                                >
+                                <BreezeButton :loading="form.processing"
+                                    >Create</BreezeButton
+                                >
                             </div>
                         </form>
                     </div>
