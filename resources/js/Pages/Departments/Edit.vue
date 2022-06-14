@@ -8,6 +8,7 @@ import BreezeInputError from "@/Components/InputError";
 import BreezeButton from "@/Components/Button";
 import { Inertia } from "@inertiajs/inertia";
 import { defineProps } from "vue";
+import BreezeHeading from "@/Components/Heading.vue"
 
 
 const props = defineProps({
@@ -34,9 +35,9 @@ function resetForm() {
 
     <BreezeAuthenticatedLayout>
         <template #header>
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+           <BreezeHeading>
                 Edit Department
-            </h2>
+            </BreezeHeading>
         </template>
 
         <div class="py-12">

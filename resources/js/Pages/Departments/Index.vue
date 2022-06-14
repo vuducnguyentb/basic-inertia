@@ -7,6 +7,7 @@ import BreezeLink from "@/Components/AnchorLink.vue";
 import { Head } from "@inertiajs/inertia-vue3";
 import { ref, defineProps } from "vue";
 import { Link } from "@inertiajs/inertia-vue3";
+import BreezeHeading from "@/Components/Heading.vue"
 
 const props = defineProps({
     departments: Object,
@@ -18,9 +19,9 @@ const props = defineProps({
 
     <BreezeAuthenticatedLayout>
         <template #header>
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                Department
-            </h2>
+           <BreezeHeading>
+              Departments
+            </BreezeHeading>
         </template>
 
         <div class="py-12">
