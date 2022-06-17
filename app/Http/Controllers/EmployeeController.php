@@ -17,10 +17,21 @@ class EmployeeController extends Controller
      */
     public function index()
     {
+        $departments = Department::orderBy('name')->get()
+            ->transform(function ($d) {
+                return [
+                    'id' => $d->id,
+                    'label' =>  $d->name
+                ];
+            });
+
+        $department_id = Request::get('deparment_id');
+
         $employees = Employee::orderBy('id', 'DESC')
         ->with('department')
-        ->paginate(10)
-        ->through(function ($employee) {
+            ->whereDepartment($department_id)
+            ->get()
+            ->transform(function ($employee) {
             return [
                 'id' => $employee->id,
                 'name' => $employee->name,
@@ -28,8 +39,11 @@ class EmployeeController extends Controller
                 'department' => $employee->department->name ?? null,
             ];
         });
+
         return Inertia::render('Employees/Index', [
-            'employees' => $employees
+            'department_id'=>$department_id,
+            'employees' => $employees,
+            'departments'=> $departments
         ]);
     }
 
