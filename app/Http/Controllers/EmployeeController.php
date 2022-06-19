@@ -39,11 +39,19 @@ class EmployeeController extends Controller
                 'department' => $employee->department->name ?? null,
             ];
         });
-
+//        dd($departments);
         return Inertia::render('Employees/Index', [
             'department_id'=>$department_id,
             'employees' => $employees,
-            'departments'=> $departments
+            'departments'=> function(){
+            return Department::orderBy('name')->get()
+                ->transform(function ($d) {
+                    return [
+                        'id' => $d->id,
+                        'label' =>  $d->name
+                    ];
+                });
+            }
         ]);
     }
 
