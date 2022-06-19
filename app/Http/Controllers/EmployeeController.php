@@ -39,7 +39,6 @@ class EmployeeController extends Controller
                 'department' => $employee->department->name ?? null,
             ];
         });
-//        dd($departments);
         return Inertia::render('Employees/Index', [
             'department_id'=>$department_id,
             'employees' => $employees,

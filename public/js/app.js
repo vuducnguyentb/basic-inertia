@@ -22937,6 +22937,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @inertiajs/inertia-vue3 */ "./node_modules/@inertiajs/inertia-vue3/dist/index.js");
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 /* harmony import */ var _Components_Heading_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @/Components/Heading.vue */ "./resources/js/Components/Heading.vue");
+/* harmony import */ var _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @inertiajs/inertia */ "./node_modules/@inertiajs/inertia/dist/index.js");
+
 
 
 
@@ -22959,14 +22961,24 @@ __webpack_require__.r(__webpack_exports__);
     var form = (0,_inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_5__.useForm)({});
 
     function destroy(id) {
-      form["delete"](route('departments.destroy', id)); //   this.$inertia.delete(route("departments.destroy", id));
+      _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_8__.Inertia["delete"](route('departments.destroy', id)); //   this.$inertia.delete(route("departments.destroy", id));
       //   this.delete(route("departments.destroy", id));
+    }
+
+    function employees(id) {
+      _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_8__.Inertia.visit(route('employees.index'), {
+        method: 'get',
+        data: {
+          deparment_id: id
+        }
+      });
     }
 
     var __returned__ = {
       props: props,
       form: form,
       destroy: destroy,
+      employees: employees,
       BreezeAuthenticatedLayout: _Layouts_Authenticated_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
       BreezeTc: _Components_TableColumn_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
       BreezeTable: _Components_Table_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
@@ -22976,7 +22988,8 @@ __webpack_require__.r(__webpack_exports__);
       ref: vue__WEBPACK_IMPORTED_MODULE_6__.ref,
       Link: _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_5__.Link,
       BreezeHeading: _Components_Heading_vue__WEBPACK_IMPORTED_MODULE_7__["default"],
-      useForm: _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_5__.useForm
+      useForm: _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_5__.useForm,
+      Inertia: _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_8__.Inertia
     };
     Object.defineProperty(__returned__, '__isScriptSetup', {
       enumerable: false,
@@ -23197,6 +23210,7 @@ __webpack_require__.r(__webpack_exports__);
     expose();
     var props = __props;
     var form = (0,_inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_4__.useForm)({});
+    var employees = (0,vue__WEBPACK_IMPORTED_MODULE_5__.ref)(props.employees);
 
     function destroy(id) {
       form["delete"](route("employees.destroy", id));
@@ -23213,6 +23227,7 @@ __webpack_require__.r(__webpack_exports__);
     var __returned__ = {
       props: props,
       form: form,
+      employees: employees,
       destroy: destroy,
       getEmployees: getEmployees,
       BreezeAuthenticatedLayout: _Layouts_Authenticated_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
@@ -25305,6 +25320,8 @@ var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNo
 
 var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Delete");
 
+var _hoisted_15 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("View");
+
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Head"], {
     title: "Department"
@@ -25421,7 +25438,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             /* DYNAMIC_SLOTS */
             ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["BreezeTc"], null, {
               "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-                return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["BreezeLink"], {
+                return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["BreezeLink"], {
                   mode: "edit",
                   href: _ctx.route('departments.edit', d.id)
                 }, {
@@ -25447,7 +25464,21 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
                 }, 1032
                 /* PROPS, DYNAMIC_SLOTS */
-                , ["onClick"])])];
+                , ["onClick"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["BreezeLink"], {
+                  mode: "view",
+                  onClick: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
+                    return $setup.employees(d.id);
+                  }, ["prevent"])
+                }, {
+                  "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+                    return [_hoisted_15];
+                  }),
+                  _: 2
+                  /* DYNAMIC */
+
+                }, 1032
+                /* PROPS, DYNAMIC_SLOTS */
+                , ["onClick"])];
               }),
               _: 2
               /* DYNAMIC */
@@ -25844,7 +25875,9 @@ var _hoisted_6 = {
   "class": "flex items-center justify-between mb-6"
 };
 
-var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", null, "-Please Select-", -1
+var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
+  value: ""
+}, "-Please Select-", -1
 /* HOISTED */
 );
 
@@ -25954,7 +25987,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
           })];
         }),
         "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-          return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tbody", null, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.employees, function (d) {
+          return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tbody", null, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.employees, function (d) {
             return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("tr", {
               key: d.id,
               "class": "hover:bg-gray-200"

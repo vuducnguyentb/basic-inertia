@@ -18,6 +18,8 @@
     });
     const form = useForm({});
 
+    const employees = ref(props.employees);
+
     function destroy(id) {
         form.delete(route("employees.destroy", id));
     }
@@ -31,6 +33,7 @@
                 only: ["employees", "department_id"]
             })
     }
+
 </script>
 
 <template>
@@ -51,7 +54,7 @@
                                     v-model="department_id"
                                     @change="getEmployees(department_id)"
                             >
-                                <option>-Please Select-</option>
+                                <option value="">-Please Select-</option>
                                 <option v-for="option in departments" :value="option.id">{{option.label}}</option>
                             </select>
                         </div>

@@ -9,6 +9,7 @@ import { ref, defineProps } from "vue";
 import { Link } from "@inertiajs/inertia-vue3";
 import BreezeHeading from "@/Components/Heading.vue";
 import { useForm } from "@inertiajs/inertia-vue3";
+import {Inertia} from "@inertiajs/inertia";
 
 const props = defineProps({
     departments: Object,
@@ -17,9 +18,16 @@ const form = useForm({
 });
 
 function destroy(id){
-    form.delete(route('departments.destroy', id));
+    Inertia.delete(route('departments.destroy', id));
     //   this.$inertia.delete(route("departments.destroy", id));
     //   this.delete(route("departments.destroy", id));
+}
+
+function employees(id) {
+    Inertia.visit(route('employees.index'),{
+        method:'get',
+        data:{deparment_id:id}
+    })
 }
 </script>
 
@@ -59,7 +67,6 @@ function destroy(id){
                                     <BreezeTc>{{ d.email }}</BreezeTc>
                                     <BreezeTc>{{ d.phone }}</BreezeTc>
                                     <BreezeTc>
-                                        <form >
                                         <BreezeLink
                                             mode="edit"
                                             :href="
@@ -72,7 +79,11 @@ function destroy(id){
                                             @click.prevent="destroy(d.id)"
                                             >Delete</BreezeLink
                                         >
-                                        </form>
+                                        <BreezeLink
+                                            mode="view"
+                                            @click.prevent="employees(d.id)"
+                                        >View</BreezeLink
+                                        >
                                     </BreezeTc>
                                 </tr>
                             </tbody>
