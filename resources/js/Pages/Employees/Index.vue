@@ -21,7 +21,7 @@
     const employees = ref(props.employees);
 
     function destroy(id) {
-        form.delete(route("employees.destroy", id));
+        Inertia.delete(route("employees.destroy", id),{preserveScroll:true});
     }
 
     function getEmployees(department_id) {
@@ -83,7 +83,6 @@
                                 <BreezeTc>{{ d.department }}</BreezeTc>
                                 <BreezeTc>{{ d.email }}</BreezeTc>
                                 <BreezeTc>
-                                    <form>
                                         <BreezeLink
                                             mode="edit"
                                             :href="
@@ -101,7 +100,6 @@
                                         >Delete
                                         </BreezeLink
                                         >
-                                    </form>
                                 </BreezeTc>
                             </tr>
                             </tbody>

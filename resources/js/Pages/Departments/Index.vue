@@ -18,7 +18,7 @@ const form = useForm({
 });
 
 function destroy(id){
-    Inertia.delete(route('departments.destroy', id));
+    Inertia.delete(route('departments.destroy', id),{preserveScroll:true});
     //   this.$inertia.delete(route("departments.destroy", id));
     //   this.delete(route("departments.destroy", id));
 }

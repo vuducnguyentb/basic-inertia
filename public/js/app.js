@@ -22961,7 +22961,9 @@ __webpack_require__.r(__webpack_exports__);
     var form = (0,_inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_5__.useForm)({});
 
     function destroy(id) {
-      _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_8__.Inertia["delete"](route('departments.destroy', id)); //   this.$inertia.delete(route("departments.destroy", id));
+      _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_8__.Inertia["delete"](route('departments.destroy', id), {
+        preserveScroll: true
+      }); //   this.$inertia.delete(route("departments.destroy", id));
       //   this.delete(route("departments.destroy", id));
     }
 
@@ -23213,7 +23215,9 @@ __webpack_require__.r(__webpack_exports__);
     var employees = (0,vue__WEBPACK_IMPORTED_MODULE_5__.ref)(props.employees);
 
     function destroy(id) {
-      form["delete"](route("employees.destroy", id));
+      _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_7__.Inertia["delete"](route("employees.destroy", id), {
+        preserveScroll: true
+      });
     }
 
     function getEmployees(department_id) {
@@ -26037,7 +26041,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             /* DYNAMIC_SLOTS */
             ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["BreezeTc"], null, {
               "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-                return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["BreezeLink"], {
+                return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["BreezeLink"], {
                   mode: "edit",
                   href: _ctx.route('employees.edit', d.id)
                 }, {
@@ -26063,7 +26067,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
                 }, 1032
                 /* PROPS, DYNAMIC_SLOTS */
-                , ["onClick"])])];
+                , ["onClick"])];
               }),
               _: 2
               /* DYNAMIC */
